@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Schedule from "./features/Schedule.tsx";
+import type PairInfo from "./types/pairInfo.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const lastNames: string[] = ['Иванов С. М.', 'Шилов Н. В.', 'Добрин Ю. Н.'];
+  const timeArray: string[] = ['8:30-10:10', '10:20-12:00', '12:45-14:25'];
+  const titleArray: string[] = ['Информатика', 'Математика', 'Русский язык'];
+  const cabinetArray: string[] = ['1017', '1018', '1017Ф'];
+
+  const schedule: PairInfo[] = [...Array(Math.floor(Math.random() * 6)).keys()].map(() => (
+    {
+      teacher: lastNames[Math.floor(Math.random() * 2)],
+      time: timeArray[Math.floor(Math.random() * 2)],
+      title: titleArray[Math.floor(Math.random() * 2)],
+      cabinet: cabinetArray[Math.floor(Math.random() * 2)]
+    }
+  ));
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Schedule schedule={schedule} />
     </>
   )
 }
 
-export default App
+export default App;
