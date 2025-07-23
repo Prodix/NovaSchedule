@@ -48,7 +48,7 @@ function getWeekdayFull(date = new Date()) {
 function Calendar({ onDateChange } : {onDateChange: (date: Date) => void}) {
 
   const [pickedDayIndex, setPickedDayIndex] = useState(getCurrentWeekdayIndex());
-  const [weekDays, setWeekDays] = useState(getCurrentWeekDates());
+  const [weekDays] = useState(getCurrentWeekDates());
 
   useEffect(() => {
     if (onDateChange) {
