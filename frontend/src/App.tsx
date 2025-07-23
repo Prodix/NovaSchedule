@@ -1,8 +1,9 @@
 import Schedule from "./features/Schedule.tsx";
 import type PairInfo from "./types/pairInfo.ts";
+import Calendar from "./components/Calendar/Calendar.tsx";
+import {useState} from "react";
 
-function App() {
-
+function getSchedule() {
   const lastNames: string[] = ['Иванов С. М.', 'Шилов Н. В.', 'Добрин Ю. Н.'];
   const timeArray: string[] = ['8:30-10:10', '10:20-12:00', '12:45-14:25'];
   const titleArray: string[] = ['Информатика', 'Математика', 'Русский язык'];
@@ -17,8 +18,16 @@ function App() {
     }
   ));
 
+  return schedule;
+}
+
+function App() {
+
+  const [schedule, setSchedule] = useState<PairInfo[]>([]);
+
   return (
     <>
+      <Calendar onDateChange={() => setSchedule(getSchedule())} />
       <Schedule schedule={schedule} />
     </>
   )
